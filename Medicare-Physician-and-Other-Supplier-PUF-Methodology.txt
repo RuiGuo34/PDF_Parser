@@ -1,0 +1,806 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Medicare Fee-For-Service  
+Provider Utilization & Payment Data  
+Physician and Other Supplier 
+ Public Use File: 
+A Methodological Overview 
+ 
+ 
+ 
+ 
+April 7, 2014 
+Last Updated: April 29, 2016 
+ 
+ 
+ 
+ 
+ 
+Prepared by: 
+The Centers for Medicare and Medicaid Services, 
+Office of Enterprise Data and Analytics  
+----------------Page (0) Break----------------
+ 
+Table of Contents 
+1. Background ........................................................................................................................................... 3 
+2. Key Data Sources ................................................................................................................................... 3 
+3. Population ............................................................................................................................................. 4 
+4. Aggregation ........................................................................................................................................... 4 
+5. Data Contents ....................................................................................................................................... 4 
+Detailed Data File .................................................................................................................................. 4 
+Summary Tables .................................................................................................................................... 8 
+Medicare Physician and Other Supplier Aggregate Table ............................................................... 8 
+Medicare State/National HCPCS Aggregate Tables ....................................................................... 13 
+6. Data Limitations: ................................................................................................................................. 13 
+7. Additional Information ........................................................................................................................ 15 
+8. Updates: .............................................................................................................................................. 16 
+APPENDIX A – Physician and Other Supplier PUF File Attributes ............................................................... 18 
+APPENDIX B – Medicare Physician and Other Supplier Aggregate (NPI) File Attributes ............................ 19 
+APPENDIX C – Place of Service Descriptions ............................................................................................... 22 
+  
+ 
+ 
+  
+2 
+ 
+----------------Page (1) Break----------------
+1. Background 
+As part of the Obama Administration’s efforts to make our healthcare system more transparent, 
+affordable, and accountable, the Centers for Medicare & Medicaid Services (CMS) has prepared a public 
+data set, the Provider Utilization and Payment Data Physician and Other Supplier Public Use File (herein 
+referred to as “Physician and Other Supplier PUF”), with information on services and procedures 
+provided to Medicare beneficiaries by physicians and other healthcare professionals. The Physician and 
+Other Supplier PUF contains information on utilization, payment (allowed amount and Medicare 
+payment), and submitted charges organized by National Provider Identifier (NPI), Healthcare Common 
+Procedure Coding System (HCPCS) code, and place of service. The data in the Physician and Other 
+Supplier PUF cover calendar years 2012 through 2014 and contain 100% final-action (i.e., all claim 
+adjustments have been resolved) physician/supplier Part B non-institutional line items for the Medicare 
+fee-for-service (FFS) population. Claims processed by Durable Medical Equipment, Prosthetic, Orthotics 
+and Supplies (DMEPOS) Medicare Administrative Contractor (MAC) are not included in the Physician and 
+Other Supplier PUF. 
+2. Key Data Sources 
+The data for the Physician and Other Supplier PUF are based upon CMS administrative claims data for 
+Medicare beneficiaries enrolled in the fee-for-service program. The 2014 data are available from the 
+CMS Chronic Condition Data Warehouse (CCW), a database with 100% of Medicare enrollment and fee-
+for-service claims data. Service counts, beneficiary counts, provider charges, Medicare allowed amounts 
+and payments and the place of service indicator are summarized from Part B non-institutional claims 
+processed through Medicare Administrative Contractor (MAC) Jurisdictions (NCH Claim Type Codes '71', 
+'72'). For additional information on the CCW, visit www.ccwdata.org. The prior years of the Physician 
+and Other Supplier PUF (CY2012/CY2013) are based upon data from the National Claims History (NCH) 
+Standard Analytic Files (SAFs), which are similar administrative data of 100% of Medicare final action 
+claims for beneficiaries who are enrolled in the FFS program. We compared the two data sources for 
+CY2013 and found that across all summary datasets the overall difference was .01% or less.  
+ 
+For all Physician and Other Supplier PUF data years, provider demographics (name, credentials, gender, 
+complete address and entity type) are included from the National Plan & Provider Enumeration System 
+(NPPES). CMS developed the NPPES to assign unique identifiers, known as National Provider Identifiers 
+(NPIs), to health care providers. The health care provider’s demographic information is collected at the 
+time of enrollment and updated periodically. The demographics information provided in the 2014 
+Physician and Other Supplier PUF was extracted from NPPES at the end of calendar year 2015.  Prior 
+years of the Physician and Other Supplier PUF (CY2012/CY2013) are based upon information extracted 
+from NPPES at the end of calendar year 2014. For additional information on NPPES, please visit 
+https://nppes.cms.hhs.gov/NPPES/Welcome.do.   
+ 
+3 
+ 
+----------------Page (2) Break----------------
+3. Population 
+The Physician and Other Supplier PUF includes data for providers that had a valid NPI and submitted 
+Medicare Part B non-institutional claims (excluding DMEPOS) during the 2012 through 2014 calendar 
+years. To protect the privacy of Medicare beneficiaries, any aggregated records which are derived from 
+10 or fewer beneficiaries are excluded from the Physician and Other Supplier PUF. 
+4. Aggregation 
+The spending and utilization data in the Physician and Other Supplier PUF are aggregated to the 
+following: 
+a) the NPI for the performing provider,  
+b) the Healthcare Common Procedure Coding System (HCPCS) code, and 
+c) the place of service (either facility or non-facility).  
+ 
+There can be multiple records for a given NPI based on the number of distinct HCPCS codes that were 
+billed and where the services were provided. Data have been aggregated based on the place of service 
+because separate fee schedules apply depending on whether the place of service submitted on the claim 
+is facility or non-facility. 
+5. Data Contents 
+Detailed Data File 
+The following variables are included in the detailed Physician and Other Supplier data file: 
+npi – National Provider Identifier (NPI) for the performing provider on the claim. The provider NPI is the 
+numeric identifier registered in NPPES. 
+nppes_provider_last_org_name – When the provider is registered in NPPES as an individual (entity type 
+code=’I’), this is the provider’s last name. When the provider is registered as an organization (entity type 
+code = ‘O’), this is the organization name. 
+nppes_provider_first_name – When the provider is registered in NPPES as an individual (entity type 
+code=’I’), this is the provider’s first name. When the provider is registered as an organization (entity 
+type code = ‘O’), this will be blank. 
+nppes_provider_mi – When the provider is registered in NPPES as an individual (entity type code=’I’), 
+this is the provider’s middle initial. When the provider is registered as an organization (entity type code 
+= ‘O’), this will be blank. 
+nppes_credentials – When the provider is registered in NPPES as an individual (entity type code=’I’), 
+these are the provider’s credentials. When the provider is registered as an organization (entity type 
+code = ‘O’), this will be blank.  
+4 
+ 
+----------------Page (3) Break----------------
+nppes_provider_gender – When the provider is registered in NPPES as an individual (entity type 
+code=’I’), this is the provider’s gender. When the provider is registered as an organization (entity type 
+code = ‘O’), this will be blank. 
+nppes_entity_code – Type of entity reported in NPPES. An entity code of ‘I’ identifies providers 
+registered as individuals and an entity type code of ‘O’ identifies providers registered as organizations. 
+nppes_provider_street1 – The first line of the provider’s street address, as reported in NPPES. 
+nppes_provider_street2 – The second line of the provider’s street address, as reported in NPPES. 
+nppes_provider_city – The city where the provider is located, as reported in NPPES. 
+nppes_provider_zip – The provider’s zip code, as reported in NPPES. 
+nppes_provider_state – The state where the provider is located, as reported in NPPES. The fifty U.S. 
+states and the District of Columbia are reported by the state postal abbreviation.  The following values 
+are used for all other areas: 
+'XX' = 'Unknown' 
+'AA' = 'Armed Forces Central/South America' 
+'AE' = 'Armed Forces Europe' 
+'AP' = 'Armed Forces Pacific' 
+'AS' = 'American Samoa' 
+'GU' = 'Guam' 
+'MP' = 'North Mariana Islands' 
+'PR' = 'Puerto Rico' 
+'VI' = 'Virgin Islands' 
+'ZZ' = 'Foreign Country' 
+ 
+nppes_provider_country – The country where the provider is located, as reported in NPPES. The country 
+code will be ‘US’ for any state or U.S. possession. For foreign countries (i.e., state values of ‘ZZ’), the 
+provider country values include the following: 
+AE=United Arab Emirates IS= Iceland  
+AG=Antigua   IT=Italy 
+AR=Argentina   JP=Japan 
+AU=Australia   KR=Korea 
+BO=Bolivia   KW=Kuwait 
+BR=Brazil   KY=Cayman Islands 
+CA=Canada   LB=Lebanon 
+CH=Switzerland   MX=Mexico  
+CN=China   NL=Netherlands 
+CO=Colombia   NO=Norway 
+DE= Germany   NZ=New Zealand 
+ES= Spain   PA=Panama 
+FR=France   PK=Pakistan 
+GB=Great Britain  RW=Rwanda 
+5 
+ 
+----------------Page (4) Break----------------
+GR=Greece   SA=Saudi Arabia 
+HU= Hungary   SY=Syria 
+IL= Israel   TH=Thailand 
+IN=India   TR=Turkey 
+    VE=Venezuela 
+ 
+provider_type – Derived from the provider specialty code reported on the claim.  For providers that 
+reported more than one specialty code on their claims, this is the specialty code associated with the 
+largest number of services. 
+medicare_participation_indicator – Identifies whether the provider participates in Medicare and/or 
+accepts assignment of Medicare allowed amounts.  The value will be ‘Y’ for any provider that had at 
+least one claim identifying the provider as participating in Medicare or accepting assignment of 
+Medicare allowed amounts within HCPCS code and place of service.  A non-participating provider may 
+elect to accept Medicare allowed amounts for some services and not accept Medicare allowed amounts 
+for other services.  
+place_of_service – Identifies whether the place of service submitted on the claims is a facility (value of 
+‘F’) or non-facility (value of ‘O’).  Non-facility is generally an office setting; however other entities are 
+included in non-facility. See “Appendix B – Place of Service Descriptions” for the types of entities 
+included in facility and non-facility. 
+hcpcs_code – HCPCS code used to identify the specific medical service furnished by the provider. HCPCS 
+codes include two levels.  Level I codes are the Current Procedural Terminology (CPT) codes that are 
+maintained by the American Medical Association and Level II codes are created by CMS to identify 
+products, supplies and services not covered by the CPT codes (such as ambulance services). CPT codes, 
+descriptions and other data only are copyright 2014 American Medical Association.  All rights reserved. 
+CPT is a registered trademark of the American Medical Association (AMA). Please review the complete 
+CMS AMA CPT License agreement which is presented to users when accessing the data.  For additional 
+information on HCPCS codes, visit 
+http://www.cms.gov/Medicare/Coding/MedHCPCSGenInfo/index.html?redirect=/MedHCPCSGeninfo/. 
+hcpcs_description – Description of the HCPCS code for the specific medical service furnished by the 
+provider. HCPCS descriptions associated with CPT codes are consumer friendly descriptions provided by 
+the AMA. All other descriptions are CMS Level II descriptions provided in long form.  Due to variable 
+length restrictions, the CMS Level II descriptions have been truncated to 256 bytes. As a result, the same 
+HCPCS description can be associated with more than one HCPCS code.  For complete CMS Level II 
+descriptions, visit http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets/Alpha-Numeric-
+HCPCS.html. 
+hcpcs_drug_indicator –Identifies whether the HCPCS code for the specific service furnished by the 
+provider is a HCPCS listed on the Medicare Part B Drug Average Sales Price (ASP) File. For additional 
+information on the ASP drug pricing, visit http://www.cms.gov/Medicare/Medicare-Fee-for-Service-
+Part-B-Drugs/McrPartBDrugAvgSalesPrice/index.html. 
+6 
+ 
+----------------Page (5) Break----------------
+line_srvc_cnt – Number of services provided; note that the metrics used to count the number provided 
+can vary from service to service. 
+bene_unique_cnt – Number of distinct Medicare beneficiaries receiving the service. 
+bene_day_srvc_cnt – Number of distinct Medicare beneficiary/per day services. Since a given 
+beneficiary may receive multiple services of the same type (e.g., single vs. multiple cardiac stents) on a 
+single day, this metric removes double-counting from the line service count to identify whether a unique 
+service occurred.  
+average_Medicare_allowed_amt – Average of the Medicare allowed amount for the service; this figure 
+is the sum of the amount Medicare pays, the deductible and coinsurance amounts that the beneficiary is 
+responsible for paying, and any amounts that a third party is responsible for paying. 
+stdev_Medicare_allowed_amt – Standard deviation of the Medicare allowed amounts. The standard 
+deviation indicates the amount of variation from the average Medicare allowed amount that exists 
+within a single provider, HCPCS service, and place of service. Note: This variable has been removed 
+beginning with calendar year 2014 data. 
+average_submitted_chrg_amt – Average of the charges that the provider submitted for the service. 
+stdev_submitted_chrg_amt – Standard deviation of the charge amounts submitted by the provider. The 
+standard deviation indicates the amount of variation from the average submitted charge amount that 
+exists within a single provider, HCPCS service, and place of service. Note: This variable has been 
+removed beginning with calendar year 2014 data. 
+average_Medicare_payment_amt – Average amount that Medicare paid after deductible and 
+coinsurance amounts have been deducted for the line item service. Note: In general, Medicare FFS 
+claims with dates-of-service or dates-of-discharge on or after April 1, 2013, incurred a 2 percent 
+reduction in Medicare payment. This is in response to mandatory across-the-board reductions in Federal 
+spending, also known as sequestration. For additional information, visit http://www.cms.gov/Outreach-
+and-Education/Outreach/FFSProvPartProg/Downloads/2013-03-08-standalone.pdf 
+ 
+stdev_Medicare_payment_amt – Standard deviation of the Medicare payment amount. The standard 
+deviation indicates the amount of variation from the average Medicare payment amount that exists 
+within a single provider, HCPCS service, and place of service. Note: This variable has been removed 
+beginning with calendar year 2014 data. 
+average_Medicare_standardized_amt – Average amount that Medicare paid after beneficiary 
+deductible and coinsurance amounts have been deducted for the line item service and after 
+standardization of the Medicare payment has been applied. Standardization removes geographic 
+differences in payment rates for individual services, such as those that account for local wages or input 
+prices and makes Medicare payments across geographic areas comparable, so that differences reflect 
+variation in factors such as physicians’ practice patterns and beneficiaries’ ability and willingness to 
+obtain care. Note: This variable is available starting with the calendar year 2014 data. Please refer to the 
+7 
+ 
+----------------Page (6) Break----------------
+“Additional Information” section of this document for more details on the standardization of Medicare 
+payments.  
+ 
+Summary Tables 
+Two summary type tables have been created to supplement the information reported in the Physician 
+and Other Supplier PUF: 1) aggregated information by physician or other supplier (NPI) and 2) 
+aggregated information by State/National and HCPCS code. The aggregated reports are not restricted to 
+the redacted data reported in the Physician and Other Supplier PUF but are aggregated based on all 
+Medicare Part B non-institutional claims (excluding DMEPOS).   
+Medicare Physician and Other Supplier Aggregate Table 
+The “Medicare Physician and Other Supplier Aggregate Table” contains information on utilization, 
+payments (Medicare allowed amount, Medicare payment, and standardized Medicare payment), and 
+submitted charges organized by NPI. Sub-totals for medical type services and drug type services are 
+included as well as overall utilization, payment and charges. In addition, beneficiary demographic and 
+health characteristics are provided which include age, sex, race, Medicare and Medicaid entitlement, 
+chronic conditions and risk scores.  
+The following variables correspond to the same variables reported in the detailed Physician and Other 
+Supplier PUF.  See “Section 5. Data Contents “above for descriptions: 
+npi  
+nppes_provider_last_org_name  
+nppes_provider_first_name  
+nppes_provider_mi  
+nppes_credentials  
+nppes_provider_gender  
+nppes_entity_code  
+nppes_provider_street1  
+nppes_provider_street2  
+nppes_provider_city  
+nppes_provider_zip  
+nppes_provider_state  
+nppes_provider_country  
+provider_type  
+medicare_participation_indicator  
+ 
+The following variables are specific to the “Medicare Physician and Other Supplier Aggregate Table”: 
+number_of_hcpcs – Total number of unique HCPCS codes. 
+total_services– Total provider services. 
+8 
+ 
+----------------Page (7) Break----------------
+total_unique_benes – Total Medicare beneficiaries receiving the provider services. The beneficiary 
+counts reported in the demographic sub-groups (i.e., age, sex, race and entitlement) may not aggregate 
+to the ‘Number of Unique Beneficiaries’ due to the suppression of beneficiaries fewer than 11 within the 
+demographic sub-groups.  In addition, a small percentage of beneficiaries are reflected in the “Number 
+of Unique Beneficiaries” but are not reflected in the beneficiary demographic information due to the 
+lack of demographic information available at the time of reporting. 
+total_submitted_chrg_amt – The total charges that the provider submitted for all services. 
+total_medicare_allowed_amt – The Medicare allowed amount for all provider services. This figure is 
+the sum of the amount Medicare pays, the deductible and coinsurance amounts that the beneficiary is 
+responsible for paying, and any amounts that a third party is responsible for paying. 
+total_medicare_payment_amt – Total amount that Medicare paid after deductible and coinsurance 
+amounts have been deducted for all the provider's line item services. 
+total_medicare_stnd_amt – Total amount that Medicare paid after deductible and coinsurance 
+amounts have been deducted for the line item service and after standardization of the Medicare 
+payment has been applied. Standardization removes geographic differences in payment rates for 
+individual services, such as those that account for local wages or input prices and makes Medicare 
+payments across geographic areas comparable, so that differences reflect variation in factors such as 
+physicians’ practice patterns and beneficiaries’ ability and willingness to obtain care.  
+drug_suppress_indicator – Identifies whether the utilization, cost and payment information associated 
+with HCPCS codes for drug services as listed on the Medicare Part B Drug Average Sales Price (ASP) list 
+have been suppressed.  An '*' identifies that the suppressed information is based on fewer than 11 
+beneficiaries and a '#' identifies that the information has been counter suppressed  to prevent the re-
+calculation of  information suppressed due to fewer than 11 beneficiaries.  For example, if the 
+information associated with Drug services has been suppressed because fewer than 11 beneficiaries 
+received these services from a provider, then the information associated with Medical services must 
+also be suppressed so that the information associated with Drug services cannot be recalculated by 
+subtracting the Medical values from the provider's overall values. 
+number_of_drug_hcpcs – Total number of HCPCS codes for drug services, as defined from the Medicare 
+Part B Drug ASP File.  
+total_drug_services – Total drug services, as defined from the Medicare Part B Drug ASP File. 
+total_drug_unique_benes – Total Medicare beneficiaries receiving drug services, as defined from the 
+Medicare Part B Drug ASP File. 
+total_drug_submitted_chrg_amt – The total charges that the provider submitted for drug services, as 
+defined from the Medicare Part B Drug ASP File. 
+total_drug_medicare_allowed_amt – The Medicare allowed amount for drug services, as defined from 
+the Medicare Part B Drug ASP File. This figure is the sum of the amount Medicare pays, the deductible 
+9 
+ 
+----------------Page (8) Break----------------
+and coinsurance amounts that the beneficiary is responsible for paying, and any amounts that a third 
+party is responsible for paying. 
+total_drug_medicare_payment_amt – Total amount that Medicare paid after deductible and 
+coinsurance amounts have been deducted for all the provider's line item drug services, as defined from 
+the Medicare Part B Drug ASP File. 
+total_drug_medicare_stnd_amt – Total amount that Medicare paid after deductible and coinsurance 
+amounts have been deducted for the line item drug service, as defined from the Medicare Part B Drug 
+ASP File and after standardization of the Medicare payment has been applied. Standardization removes 
+geographic differences in payment rates for individual services, such as those that account for local 
+wages or input prices and makes Medicare payments across geographic areas comparable, so that 
+differences reflect variation in factors such as physicians’ practice patterns and beneficiaries’ ability and 
+willingness to obtain care.  
+med_suppress_indicator – Identifies whether the utilization, cost and payment information associated 
+with HCPCS codes for Medical (non-ASP) services have been suppressed.  An '*' identifies that the 
+suppressed information is based on fewer than 11 beneficiaries and a '#' identifies that the information 
+has been counter suppressed  to prevent the re-calculation of  information suppressed due to fewer 
+than 11 beneficiaries.  For example, if the information associated with Medical (non-ASP) services has 
+been suppressed because fewer than 11 beneficiaries received these services from a provider, then the 
+information associated with Drug services must also be suppressed so that the information associated 
+with Medical services cannot be recalculated by subtracting the Drug values from the provider's overall 
+values. 
+number_of_med_hcpcs – Total number of HCPCS codes associated with medical (non-ASP) services.  
+total_med_services – Total medical (non-ASP) services. 
+total_med_unique_benes – Total Medicare beneficiaries receiving medical (non-ASP) services. 
+total_med_submitted_chrg_amt – The total charges that the provider submitted for medical (non-ASP) 
+services. 
+total_med_medicare_allowed_amt – The Medicare allowed amount for medical (non-ASP) services. 
+This figure is the sum of the amount Medicare pays, the deductible and coinsurance amounts that the 
+beneficiary is responsible for paying, and any amounts that a third party is responsible for paying. 
+total_med_medicare_payment_amt – Total amount that Medicare paid after deductible and 
+coinsurance amounts have been deducted for all of the provider's line item medical (non-ASP) services. 
+total_med_medicare_stnd_amt – Total amount that Medicare paid after deductible and coinsurance 
+amounts have been deducted for the line item medical (non-ASP) service, as defined from the Medicare 
+Part B Drug ASP File and after standardization of the Medicare payment has been applied. 
+Standardization removes geographic differences in payment rates for individual services, such as those 
+that account for local wages or input prices and makes Medicare payments across geographic areas 
+10 
+ 
+----------------Page (9) Break----------------
+comparable, so that differences reflect variation in factors such as physicians’ practice patterns and 
+beneficiaries’ ability and willingness to obtain care.  
+beneficiary_average_age – Average age of beneficiaries. Beneficiary age is calculated at the end of the 
+calendar year or at the time of death. 
+beneficiary_age_less_65_count – Number of beneficiaries under the age of 65. Beneficiary age is 
+calculated at the end of the calendar year or at the time of death. 
+beneficiary_age_65_74_count – Number of beneficiaries between the ages of 65 and 74. Beneficiary 
+age is calculated at the end of the calendar year or at the time of death. 
+beneficiary_age_75_84_count– Number of beneficiaries between the ages of 75 and 84. Beneficiary age 
+is calculated at the end of the calendar year or at the time of death. 
+beneficiary_age_greater_84_count – Number of beneficiaries over the age of 84. Beneficiary age is 
+calculated at the end of the calendar year or at the time of death. 
+beneficiary_female_count – Number of female beneficiaries.  
+beneficiary_male_count – Number of male beneficiaries.  
+beneficiary_race_white_count1 – Number of non-Hispanic white beneficiaries.  
+beneficiary_race_black_count1 – Number of non-Hispanic black or African American beneficiaries.  
+beneficiary_race_api_count1 – Number of Asian Pacific Islander beneficiaries.  
+beneficiary_race_hispanic_count1 – Number of Hispanic beneficiaries.  
+beneficiary_race_natind_count1 – Number of American Indian or Alaska Native beneficiaries.  
+beneficiary_race_other_count1 – Number of beneficiaries with race not elsewhere classified.  
+beneficiary_nondual_count – Number of Medicare beneficiaries qualified to receive Medicare only 
+benefits. Beneficiaries are classified as Medicare only entitlement if they received zero months of any 
+Medicaid benefits (full or partial) in the given calendar year. 
+beneficiary_dual_count – Number of Medicare beneficiaries qualified to receive Medicare and Medicaid 
+benefits. Beneficiaries are classified as Medicare and Medicaid entitlement if in any month in the given 
+calendar year they were receiving full or partial Medicaid benefits. 
+1 Race/ethnicity information is based on the variable RTI_RACE_CD from the CMS CCW enrollment database. The 
+RTI_RACE_CD variable is based upon a validated algorithm that uses Census surname lists and geography to 
+improve the accuracy of race/ethnicity classification, particularly for those who are Hispanic or Asian/Pacific 
+Islanders.  
+11 
+ 
+                                                           
+----------------Page (10) Break----------------
+beneficiary_cc_afib_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for atrial fibrillation.  
+beneficiary_cc_alzrdsd_percent2 – Percent of beneficiaries meeting the CCW chronic condition 
+algorithm for Alzheimer’s, related disorders, or dementia.   
+beneficiary_cc_asthma_percent2 – Percent of beneficiaries meeting the CCW chronic condition 
+algorithm for Asthma.  
+beneficiary_cc_cancer_percent2 – Percent of beneficiaries meeting the CCW chronic condition 
+algorithms for cancer. Includes breast cancer, colorectal cancer, lung cancer and prostate cancer.  
+beneficiary_cc_chf_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm for 
+heart failure.  
+beneficiary_cc_ckd_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for chronic kidney disease.  
+beneficiary_cc_copd_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for chronic obstructive pulmonary disease.  
+beneficiary_cc_depr_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for depression.  
+beneficiary_cc_diab_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for diabetes.  
+beneficiary_cc_hyperl_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for hyperlipidemia.  
+beneficiary_cc_hypert_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for hypertension.  
+beneficiary_cc_ihd_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm for 
+ischemic heart disease.  
+beneficiary_cc_ost_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm for 
+osteoporosis.  
+beneficiary_cc_raoa_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for rheumatoid arthritis/osteoarthritis.  
+2 To protect the privacy of Medicare beneficiaries, the number of beneficiaries fewer than 11 have been 
+suppressed and the percent of beneficiaries between 75% and 100% have been top-coded at 75%. Information on 
+source data is available from the CMS Chronic Conditions Warehouse (CCW), http://ccwdata.org/index.php.  
+ 
+12 
+ 
+                                                           
+----------------Page (11) Break----------------
+beneficiary_cc_schiot_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for schizophrenia and other psychotic disorders.  
+beneficiary_cc_strk_percent2 – Percent of beneficiaries meeting the CCW chronic condition algorithm 
+for stroke.  
+Beneficiary_Average_Risk_Score – Average Hierarchical Condition Category (HCC) risk score of 
+beneficiaries. Please refer to the “Additional Information” section of this document for more details on 
+HCC risk scores. 
+ 
+Medicare State/National HCPCS Aggregate Tables 
+The “Medicare State/National Aggregate Tables” contains information on utilization, payment (allowed 
+amount and Medicare payment), and submitted charges organized by HCPCS and place of service in the 
+national table and organized by provider state, HCPCS and place of service in the state table.  The 
+national and state tables also include a HCPCS drug indicator to identify whether the HCPCS 
+product/service is a drug as defined from the Medicare Part B Drug ASP list. 
+More detailed information on the Medicare Physician and Other Supplier Aggregate Table and the 
+Medicare State/National Aggregate tables are provided in the Methodology and Documentation tabs of 
+each data file. 
+6. Data Limitations: 
+Although the Physician and Other Supplier PUF has a wealth of payment and utilization information 
+about many Medicare Part B services, the dataset also has a number of limitations that are worth 
+noting. 
+First, the data in the Physician and Other Supplier PUF may not be representative of a physician’s entire 
+practice. The data in the file only have information for Medicare beneficiaries with Part B FFS coverage, 
+but physicians typically treat many other patients who do not have that form of coverage. The Physician 
+and Other Supplier PUF does not have any information on patients who are not covered by Medicare, 
+such as those with coverage from other federal programs (like the Federal Employees Health Benefits 
+Program or Tricare), those with private health insurance (such as an individual policy or employer-
+sponsored coverage), or those who are uninsured. Even within Medicare, the Physician and Other 
+Supplier PUF does not include information for patients who are enrolled in any form of Medicare 
+Advantage plan. 
+The information presented in this file also does not indicate the quality of care provided by individual 
+physicians. The file only contains cost and utilization information, and for the reasons described in the 
+preceding paragraph, the volume of procedures presented may not be fully inclusive of all procedures 
+performed by the provider.  
+13 
+ 
+----------------Page (12) Break----------------
+Medicare allowed amounts and Medicare payments for a given HCPCS code/place of service can vary 
+based on a number of factors, including modifiers, geography, and other services performed during the 
+same day/visit. For example, modifiers (two-character designators that signal a change in how the 
+HCPCS code for the procedure or service should be applied) may be included on the claim line when the 
+service intensity was increased or decreased, when an additional physician administered services, or 
+when the service provided differs from the procedure definition. In some cases, modifiers impact 
+allowed amounts and payments. In addition, allowed amounts and payments vary geographically 
+because Medicare makes adjustments for most services based on an area's cost of living. Allowed 
+amounts and payments can also be adjusted when a physician renders multiple services to a beneficiary 
+on the same day, which is referred to as a multiple procedure payment reduction.  For standard 
+payment and allowed amount rates by CPT/HCPCS code, please go to 
+http://www.cms.gov/apps/physician-fee-schedule/overview.aspx.   
+In general, when a provider administers drugs to a patient, the provider purchases the drug and 
+Medicare pays the provider 106% of the average sales price (ASP) for the drug.  Although the ASP list 
+was used in these datasets to define drug services, the drugs listed on the ASP fee schedule are not a 
+complete listing of drugs paid under part B, but the ASP fee schedule represents the majority of drugs 
+that are used in the office. For more information on payments for drugs covered under Part B, please 
+visit http://www.cms.gov/Medicare/Medicare-Fee-for-Service-Part-B-
+Drugs/McrPartBDrugAvgSalesPrice/index.html. 
+Additionally, the data are not risk adjusted and thus do not account for difference in the underlying 
+severity of disease of patient populations treated by providers. However, we have provided average 
+beneficiary risk scores in the “Medicare Physician and Other Supplier Aggregate Table” (i.e., one record 
+per NPI) to provide information on the health status of the beneficiaries the providers serve. Also, since 
+the data presented are summarized from actual claims received from providers and no attempts were 
+made to modify any data (i.e., no statistical outliers were removed or truncated), in rare instances the 
+average submitted charge amount may reflect errors included on claims submitted by providers. 
+As noted earlier, the file does not include data for services that were performed on 10 or fewer 
+beneficiaries, so users should be aware that summing the data in the file may underestimate the true 
+Part B FFS totals.  In addition, some providers bill under both an individual NPI and an organizational 
+NPI.  In this case, users cannot determine a provider’s actual total because there is no way to identify 
+the individual’s portion when billed under their organization. 
+Medicare pays differently when services are provided in a facility setting versus a freestanding 
+physicians’ office (or other non-facility setting).  When services are delivered in a facility setting, 
+Medicare makes two payments, one for the physician’s professional fee and one for the facility.  For 
+services delivered in a facility (place_of_Service =“F”), the data in the Physician and Other Supplier PUF 
+only represents the physician’s professional fee and does not include the facility payment.  On the other 
+hand, for services delivered in a non-facility setting, such as a physician’s office (place_of_Service =“O”), 
+the Physician and Other Supplier PUF represents the complete payment for the service.   
+14 
+ 
+----------------Page (13) Break----------------
+If users try to link data from this file to other public datasets, please be aware of the particular Medicare 
+populations included and timeframes used in each file that will be merged.  For example, efforts to link 
+the Physician and Other Supplier PUF data to Part D prescription drug data would need to account for 
+the fact that some beneficiaries who have FFS Part B coverage (and are thus included in the Physician 
+and Other Supplier PUF) do not have Part D drug coverage (and thus not represented in Part D data 
+files).  At the same time, some beneficiaries that have Part D coverage (and are thus included in the Part 
+D data) do not have FFS Part B coverage (and thus not included in the Physician and Other Supplier PUF).  
+Another example would be linking to data constructed from different or non-aligning time periods, such 
+as publically available data on physician referral patterns, which is based on an 18-month period.   
+Finally, users should be aware that payments from some CMS demonstration programs are included in 
+the Physician and Other Supplier PUF.  Since some CMS demonstration programs utilize the Medicare 
+claims submission process, payments for services under these demonstrations are included in the data 
+file and may be grouped under specific demonstration HCPCS codes or aggregated under non-
+demonstration specific HCPCS codes.  Demonstration programs that are paid outside of the Medicare 
+claims submission process are not included in the Physician and Other Supplier PUF.  
+7. Additional Information 
+Other Data Sources: CMS also releases the “Medicare Fee-For-Service Public Provider Enrollment Data” 
+that include provider name and address information from the Provider Enrollment and Chain Ownership 
+System (PECOS). These data are updated on a quarterly basis and are available at data.cms.gov. 
+Medicare Standardized Spending: Users can find more information on Medicare payment 
+standardization by referring to the “Geographic Variation Public Use File: Technical Supplement on 
+Standardization” available within the “Related Links” section of the following web page: 
+https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-
+Geographic-Variation/GV_PUF.html. 
+HCCs (hierarchical condition categories): CMS developed a risk-adjustment model that uses HCCs 
+(hierarchical condition categories) to assign risk scores. Those scores estimate how beneficiaries’ FFS 
+spending will compare to the overall average for the entire Medicare population. The average risk score 
+is set at 1.08; beneficiaries with scores greater than that are expected to have above-average spending, 
+and vice versa. Risk scores are based on a beneficiary’s age and sex; whether the beneficiary is eligible 
+for Medicaid, first qualified for Medicare on the basis of disability, or lives in an institution (usually a 
+nursing home); and the beneficiary’s diagnoses from the previous year. 
+The HCC model was designed for risk adjustment on larger populations, such as the enrollees in an MA 
+plan, and generates more accurate results when used to compare groups of beneficiaries rather than 
+individuals. For more information on the HCC risk score, see: https://www.cms.gov/Medicare/Health-
+Plans/MedicareAdvtgSpecRateStats/Risk-Adjustors.html.  
+ 
+15 
+ 
+----------------Page (14) Break----------------
+8. Updates: 
+May 2016 Updates 
+We have updated the Physician and Other Supplier PUF and the supplemental summary tables including 
+the “Medicare Physician and Other Supplier Aggregate Table” (i.e., one record per NPI) and the 
+“Medicare State/National HCPCS Aggregate Tables”, to include Medicare standardized payment 
+amounts that allow for comparisons of the Medicare payment amount across geographic areas. 
+Standardization removes geographic differences in payment rates for individual services, such as those 
+that account for local wages or input prices and makes Medicare payments across geographic areas 
+comparable. 
+We have also removed the minimum, maximum, and standard deviation amounts associated with 
+payments and charges from the Physician and Other Supplier PUF and from the “Medicare 
+State/National HCPCS Aggregate Tables”.   
+These updates begin with calendar year 2014 data. Previous year’s data have not been re-published to 
+include standardized Medicare payments amounts or to remove minimum, maximum, and standard 
+deviation amounts from payments and charges. 
+September 2015 Updates 
+We have updated the summary file, “Medicare Physician and Other Supplier Aggregate Table”, to include 
+demographic and health information associated with the provider’s beneficiary panel. This provider-
+level summary (i.e., one record per NPI) now includes aggregated information on beneficiary age, sex, 
+race, Medicare and Medicaid entitlement, sixteen (16) chronic conditions and risk scores.  More detailed 
+information on each variable added to this summary file is provided in the Documentation tab of the 
+data file. 
+The 2012 and 2013 data are re-published to reflect all updates. 
+June 2015 Updates 
+We have updated the Physician and Other Supplier PUF to include a new variable (hcpcs_drug_indicator) 
+to identify whether the HCPCS product/service is a drug as defined from the Medicare Part B Drug ASP 
+list.  In addition, HCPCS descriptions have been expanded to include consumer friendly descriptions 
+provided by the AMA for CPT codes (numeric HCPCS codes) and long form descriptions for the CMS 
+Level II codes (alpha-numeric HCPCS codes).  
+The two types of summary files, the “Medicare Physician and Other Supplier Aggregate Table” (i.e., one 
+record per NPI) and the Medicare State/National HCPCS Aggregate Tables have also been updated. 
+These summary files are now individually summarized from the Medicare Part B non-institutional claims 
+(excluding DMEPOS) and are no longer based on redacted data from the Physician and Other Supplier 
+PUF.  Also, the distinction between drug and medical services is incorporated in the two types of 
+summary files. The “Medicare Physician and Other Supplier Aggregate Table” includes separate totals 
+16 
+ 
+----------------Page (15) Break----------------
+for medical services and drug services as well as the totals for all services. The “Medicare State/National 
+HCPCS Aggregate Tables” include the new variable (HCPCS Drug Indicator) to identify whether the 
+HCPCS product/service is a drug as defined from the Medicare Part B Drug ASP list.  
+The 2012 data are re-published to reflect all updates. 
+  
+17 
+ 
+----------------Page (16) Break----------------
+APPENDIX A – Physician and Other Supplier PUF File Attributes 
+  
+VariableFormatL                    engthLabel
+Data Year 
+Begin Date
+npiChar10National Provider Identifier2012
+nppes _provi der_l a s t_org_na meChar70La s t Na me/Orga ni za ti on Na me of the Provi der2012
+nppes_provider_first_nameChar20Fi rs t Na me of the Provi der2012
+nppes_provider_miChar1Middle Initial of the Provider2012
+nppes_credentialsChar20Credenti a l s  of the Provi der2012
+nppes_provider_genderChar1Gender of the Provi der2012
+nppes_entity_codeChar1Enti ty Type of the Provi der2012
+nppes _provi der_s treet1Char55Street Addres s  1 of the Provi der2012
+nppes _provi der_s treet2Char55Street Addres s  2 of the Provi der2012
+nppes_provider_cityChar40Ci ty of the Provi der2012
+nppes_provider_zipChar20Zip Code of the Provider2012
+nppes_provider_stateChar2Sta te Code of the Provi der2012
+nppes_provider_countryChar2Country Code of the Provider2012
+provider_typeChar43Provi der Type of the Provi der2012
+medicare_participation_indicatorChar1Medicare Participation Indicator2012
+pl a ce_of_Servi ceChar1Pl a ce of Servi ce2012
+hcpcs_codeChar5HCPCS Code2012
+hcpcs_descriptionChar2                     56HCPCS Description2012
+hcpcs_drug_indicatorChar1Identifies HCPCS As Drug Included in the ASP Drug List2012
+l i ne_s rvc_cntNum8Number of Servi ces2012
+bene_unique_cntNum8Number of Medi ca re Benefi ci a ri es2012
+bene_da y_s rvc_cntNum8Number of Di s ti nct Medi ca re Benefi ci a ry/Per Da y Servi ces2012
+a vera ge_Medi ca re_a l l owed_a mtNum8Avera ge Medi ca re Al l owed Amount2012
+s tdev_Medi ca re_a l l owed_a mt1Num8Standard Deviation Medicare Allowed Amount2012
+a vera ge_s ubmi tted_chrg_a mtNum8Average Submitted Charge Amount2012
+s tdev_s ubmi tted_chrg_a mt1Num8Standard Deviation Submitted Charge Amount2012
+a vera ge_Medi ca re_pa yment_a mtNum8Avera ge Medi ca re Pa yment Amount2012
+s tdev_Medi ca re_pa yment_a mt1Num8Standard Deviation Medicare Payment Amount2012
+a vera ge_Medi ca re_s ta nda rd_a mtNum8Average Medicare Standardized Payment Amount2014
+1Standard deviation of payments and charges were removed in calendar year 2014.
+18 
+ 
+----------------Page (17) Break----------------
+APPENDIX B – Medicare Physician and Other Supplier Aggregate (NPI) 
+File Attributes 
+ 
+  
+VariableFormatLengthLabel
+Data Year 
+Begin Date
+npiChar10National Provider Identifier2012
+nppes _provi der_l a s t_org_na meChar70La s t Na me/Orga ni za ti on Na me of the Provi der2012
+nppes_provider_first_nameChar20Fi rs t Na me of the Provi der2012
+nppes_provider_miChar1Middle Initial of the Provider2012
+nppes_credentialsChar20Credenti a l s  of the Provi der2012
+nppes_provider_genderChar1Gender of the Provi der2012
+nppes_entity_codeChar1Enti ty Type of the Provi der2012
+nppes _provi der_s treet1Char55Street Addres s  1 of the Provi der2012
+nppes _provi der_s treet2Char55Street Addres s  2 of the Provi der2012
+nppes_provider_cityChar40Ci ty of the Provi der2012
+nppes_provider_zipChar20Zip Code of the Provider2012
+nppes_provider_stateChar2Sta te Code of the Provi der2012
+nppes_provider_countryChar2Country Code of the Provider2012
+provider_typeChar43Provi der Type of the Provi der2012
+medicare_participation_indicatorChar1Medicare Participation Indicator2012
+number_of_hcpcs Num8Number of HCPCS2012
+tota l _s ervi ces  Num8Number of Servi ces2012
+total_unique_benes Num8Number of Medi ca re Benefi ci a ri es2012
+tota l _s ubmi tted_chrg_a mtNum8Total Submitted Charge Amount2012
+tota l _medi ca re_a l l owed_a mt Num8Total Medicare Allowed Amount2012
+tota l _medi ca re_pa yment_a mt Num8Total Medicare Payment Amount2012
+tota l _medi ca re_s tnd_a mtNum8Total Medicare Standardized Payment Amount2014
+drug_suppress_indicator Char1Drug Suppress Indicator 2012
+number_of_drug_hcpcs Num8Number of HCPCS Associated With Drug Services 2012
+tota l _drug_s ervi ces  Num8Number of Drug Servi ces  2012
+total_drug_unique_benes Num8Number of Medi ca re Benefi ci a ri es  Wi th Drug Servi ces  2012
+total_drug_submitted_chrg_amt Num8Total Drug Submitted Charge Amount 2012
+tota l _drug_medi ca re_a l l owed_a mt Num8Total Drug Medicare Allowed Amount 2012
+tota l _drug_medi ca re_pa yment_a mt Num8Total Drug Medicare Payment Amount 2012
+tota l _drug_medi ca re_s tnd_a mt Num8Total Drug Medicare Standardized Payment Amount2014
+19 
+ 
+----------------Page (18) Break----------------
+VariableFormatLengthLabel
+Data Year 
+Begin Date
+med_suppress_indicator Char1Medical Suppress Indicator2012
+number_of_med_hcpcs Num8Number of HCPCS As s oci a ted Wi th Medi ca l  Servi ces2012
+tota l _med_s ervi ces  Num8Number of Medi ca l  Servi ces2012
+tota l _med_uni que_benes  Num8Number of Medi ca re Benefi ci a ri es  Wi th Medi ca l  Servi ces2012
+tota l _med_s ubmi tted_chrg_a mt Num8Total Medical Submitted Charge Amount2012
+tota l _med_medi ca re_a l l owed_a mt Num8Total Medical Medicare Allowed Amount2012
+tota l _med_medi ca re_pa yment_a mt Num8Total Medical Medicare Payment Amount2012
+tota l _med_medi ca re_s tnd_a mt Num8Total Medical Medicare Standardized Payment Amount2014
+benefi ci a ry_a vera ge_a geNum8Avera ge Age of Benefi ci a ri es2012
+benefi ci a ry_a ge_l es s _65_count Num8Number of Benefi ci a ri es  Age Les s  652012
+benefi ci a ry_a ge_65_74_count Num8Number of Benefi ci a ri es  Age 65 to 742012
+benefi ci a ry_a ge_75_84_countNum8Number of Benefi ci a ri es  Age 75 to 842012
+benefi ci a ry_a ge_grea ter_84_count Num8Number of Benefi ci a ri es  Age Grea ter 842012
+benefi ci a ry_fema l e_count Num8Number of Fema l e Benefi ci a ri es2012
+benefi ci a ry_ma l e_countNum8Number of Ma l e Benefi ci a ri es2012
+benefi ci a ry_ra ce_whi te_count Num8Number of Non-Hispanic White Beneficiaries2012
+benefi ci a ry_ra ce_bl a ck_count Num8Number of Black or African American Beneficiaries2012
+benefi ci a ry_ra ce_a pi _countNum8Number of Asian Pacific Islander Beneficiaries2012
+beneficiary_race_hispanic_count Num8Number of Hispanic Beneficiaries2012
+beneficiary_race_natind_count Num8Number of American Indian/Alaska Native Beneficiaries2012
+benefi ci a ry_ra ce_other_countNum8Number of Benefi ci a ri es  Wi th Ra ce Not El s ewhere Classified2012
+beneficiary_nondual_count Num8Number of Benefi ci a ri es  Wi th Medi ca re Onl y Enti tl ement2012
+beneficiary_dual_count Num8Number of Benefi ci a ri es  Wi th Medi ca re & Medi ca i d Enti tl ement 2012
+20 
+ 
+----------------Page (19) Break----------------
+  
+VariableFormatLengthLabel
+Data Year 
+Begin Date
+benefi ci a ry_cc_a fi b_percentNum8Percent (%) of Beneficiaries Identified With Atrial Fibrillation2012
+benefi ci a ry_cc_a l zrds d_percent Num8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Al zhei mers  Di s ea s e or Dementi a  2012
+benefi ci a ry_cc_a s thma _percent Num8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th As thma  2012
+benefi ci a ry_cc_ca ncer_percentNum8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Ca ncer 2012
+benefi ci a ry_cc_chf_percent Num8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Hea rt Fa i l ure 2012
+benefi ci a ry_cc_ckd_percent Num8Percent (%) of Beneficiaries Identified With Chronic Kidney Disease2012
+benefi ci a ry_cc_copd_percentNum8Percent (%) of Beneficiaries Identified With Chronic Obstructive Pulmonary Disease2012
+benefi ci a ry_cc_depr_percent Num8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Depres s i on 2012
+benefi ci a ry_cc_di a b_percent Num8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Di a betes  2012
+benefi ci a ry_cc_hyperl _percentNum8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Hyperlipidemia 2012
+benefi ci a ry_cc_hypert_percent Num8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Hypertens i on 2012
+benefi ci a ry_cc_i hd_percent Num8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th I s chemi c Hea rt Di s ea s e 2012
+benefi ci a ry_cc_os t_percentNum8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Os teoporos i s  2012
+benefi ci a ry_cc_ra oa _percent Num8Percent (%) of Beneficiaries Identified With Rheumatoid Arthri ti s  / Os teoa rthri ti s  2012
+benefi ci a ry_cc_s chi ot_percent Num8Percent (%) of Beneficiaries Identified With Schizophrenia / Other Psychotic Disorders 2012
+benefi ci a ry_cc_s trk_percentNum8Percent (%) of Benefi ci a ri es  I denti fi ed Wi th Stroke 2012
+Benefi ci a ry_Avera ge_Ri s k_ScoreNum8Avera ge HCC Ri s k Score of Benefi ci a ri es  2012
+21 
+ 
+----------------Page (20) Break----------------
+APPENDIX C – Place of Service Descriptions 
+ 
+Table C-1.  Non-Facility Based Place of Service (place_of_Service =“O”) 
+ 
+Place of 
+Service 
+Code
+Non- Facility Place of Service Description
+01Pharmacy
+03School
+04Homeless Shelter
+05Indian Health Service Free-standing Facility
+06Indian Health Service Provider-based Facility
+07Tribal 638 Free-standing Facility
+08Tribal 638 Provider-based Facility
+09Prison/ Correctional Facility
+11Office
+12Home
+13Assisted Living Facility
+14Group Home
+15Mobile Unit
+16Temporary Lodging
+17Walk-in Retail Health Clinic
+20Urgent Care Facility
+25Birthing Center
+32Nursing Facility
+33Custodial Care Facility
+49Independent Clinic
+50Federally Qualified Health Center
+54Intermediate Care Facility/Mentally Retarded
+55Residential Substance Abuse Treatment Facility
+60Mass Immunization Center
+57Non-residential Substance Abuse Treatment Facility
+62Comprehensive Outpatient Rehabilitation Facility
+65End-Stage Renal Disease Treatment Facility
+71Public Health Clinic
+72Rural Health Clinic
+81Independent Laboratory
+99Other Place of Service
+22 
+ 
+----------------Page (21) Break----------------
+Table C-2.  Facility Based Place of Service (place_of_Service =“F”) 
+ 
+Place of 
+Service 
+Code
+Facility Place of Service Description
+21Inpatient Hospital
+22Outpatient Hospital
+23Emergency Room – Hospital
+24Ambulatory Surgical Center
+26Military Treatment Facility
+31Skilled Nursing Facility
+34Hospice
+41Ambulance - Land
+42Ambulance – Air or Water
+51Inpatient Psychiatric Facility
+52Psychiatric Facility-Partial Hospitalization
+53Community Mental Health Center
+56Psychiatric Residential Treatment Center
+61Comprehensive Inpatient Rehabilitation Facility
+23 
+ 
+----------------Page (22) Break----------------

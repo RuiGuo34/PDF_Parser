@@ -1,0 +1,13 @@
+pdfminer has a functionality to convert pdf into html file. However, the text is not based on the hierachical tags but based on pixels.
+cli command: pdf2txt.py -o output.html "filename"
+
+pdf2json package: built with pdf.js and extends it with interactive form elements and text content parsing outside browser. 
+
+tested with an old pdf some of the words are not in correct word orders after parsing the pdf. 
+i.e. The INURD Working Papers present preliminary research findings and are intended for internal review and
+discussion. 
+
+after parsing shows: 
+The  INURD  Working  Papers  present  preliminary (then immediately jump to the next line) with discussion.  The  views  and  interpretations.
+
+It missed research findings and are intended for internal review. However, it does appear later in the html file. not in correct order. 

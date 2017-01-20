@@ -1,0 +1,52 @@
+Page 17 Table
+left:98px; top:13266px; width:74px; height:14px 	Attribute Name
+left:297px; top:13266px; width:54px; height:14px 	Description
+left:454px; top:13266px; width:60px; height:14px 	Sample Data
+left:543px; top:13266px; width:48px; height:14px 	Data Type
+left:620px; top:13266px; width:35px; height:14px 	Format
+left:671px; top:13258px; width:33px; height:29px 	Max <br> Length
+left:78px; top:13321px; width:114px; height:14px 	Covered_Recipient_Type
+left:207px; top:13305px; width:216px; height:44px 	Indicator showing if recipient of the payment or 
+												  	<br>other transfer of value is a physician covered 
+												  	<br>recipient or a teaching hospital 
+left:81px; top:13386px; width:109px; height:14px 	Teaching_Hospital_CCN
+left:207px; top:13370px; width:214px; height:44px 	A unique identifying number (CMS Certification 
+													<br>Number) of the Teaching Hospital receiving the 
+													<br>payment or other transfer of value 
+left:462px; top:13321px; width:44px; height:14px	Physician 
+left:533px; top:13321px; width:69px; height:14px	VARCHAR2(50)
+left:624px; top:13321px; width:27px; height:14px	string 
+left:681px; top:13321px; width:13px; height:14px	50
+left:466px; top:13386px; width:35px; height:14px	330024 
+left:533px; top:13386px; width:69px; height:14px	VARCHAR2(06) 
+left:624px; top:13386px; width:27px; height:14px	string 
+left:684px; top:13386px; width:8px; height:14px		6
+left:85px; top:13451px; width:99px; height:14px		Teaching_Hospital_ID
+left:207px; top:13436px; width:233px; height:44px	Open Payments system-generated unique identifier 
+													<br>of the teaching hospital receiving the payment or 
+													<br>other transfer of value
+left:455px; top:13451px; width:58px; height:14px	1000000999	
+left:533px; top:13451px; width:69px; height:14px	NUMBER(38,0) 	
+left:619px; top:13451px; width:37px; height:14px	number 
+left:681px; top:13451px; width:13px; height:14px	38 
+left:77px; top:13524px; width:116px; height:14px	Teaching_Hospital_Name 
+left:207px; top:13500px; width:223px; height:60px	The name of the teaching hospital receiving the 
+													<br>payment or other transfer of value – the name 						
+													displayed is as listed in the CMS teaching hospital 
+													<br>list  	
+left:452px; top:13516px; width:64px; height:14px	Healthy Heart		
+left:465px; top:13531px; width:39px; height:14px	Hospital 
+left:530px; top:13524px; width:75px; height:14px	VARCHAR2(100) 
+left:624px; top:13524px; width:27px; height:14px	string 
+left:678px; top:13524px; width:19px; height:14px	100 
+left:88px; top:13596px; width:93px; height:14px		Physician_Profile_ID
+left:207px; top:13581px; width:233px; height:44px	Open Payments system-generated unique identifier 
+													<br>for physician profile receiving the payment or other 
+													<br>transfer of value
+left:455px; top:13596px; width:58px; height:14px 	1000000378 
+left:533px; top:13596px; width:69px; height:14px	NUMBER(38,0) 													
+left:619px; top:13596px; width:37px; height:14px 	number 
+left:681px; top:13596px; width:13px; height:14px 	38 
+left:72px; top:13233px; width:2px; height:14px 		 
+left:72px; top:13640px; width:2px; height:14px 		 
+left:388px; top:13724px; width:17px; height:14px 	B-2 
